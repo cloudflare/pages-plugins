@@ -1,0 +1,22 @@
+{
+  "name": "@cloudflare/pages-plugin-google-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json",
+    "api/"
+  ],
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "devDependencies": {
+    "@googleapis/chat": "^3.5.2",
+    "@types/jsrsasign": "^10.2.1"
+  },
+  "dependencies": {
+    "jsrsasign": "^10.5.17"
+  }
+}

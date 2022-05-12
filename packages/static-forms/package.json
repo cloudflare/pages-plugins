@@ -1,0 +1,14 @@
+{
+  "name": "@cloudflare/pages-plugin-static-forms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  }
+}

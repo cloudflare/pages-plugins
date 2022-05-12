@@ -1,0 +1,17 @@
+{
+  "name": "@cloudflare/pages-plugin-honeycomb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "dependencies": {
+    "@cloudflare/workers-honeycomb-logger": "^2.1.0"
+  }
+}
