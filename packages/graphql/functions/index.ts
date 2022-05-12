@@ -24,10 +24,10 @@ export const onRequestPost: GraphQLPagesPluginFunction = async ({
   request,
   pluginArgs,
 }) => {
-  const { schema, graphql } = pluginArgs;
+  const { graphql, ...rest } = pluginArgs;
 
   const result = await graphql({
-    schema,
+    ...rest,
     ...(await extractGraphQLQueryFromRequest(request)),
   });
 

@@ -1,5 +1,5 @@
-import type { graphql, GraphQLSchema } from "graphql";
+import type { graphql, GraphQLArgs } from "graphql";
 
-export type PluginArgs = { schema: GraphQLSchema; graphql: typeof graphql };
+export type PluginArgs = { graphql: typeof graphql } & GraphQLArgs;
 
 export default function (args: PluginArgs): PagesFunction;
