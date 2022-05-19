@@ -1,8 +1,6 @@
 ## Pages Plugins
 
-# MailChannels
-
-This Plugin...TOOD
+# MailChannels Pages Plugin
 
 ## Installation
 
@@ -12,12 +10,4 @@ npm install --save @cloudflare/pages-plugin-mailchannels
 
 ## Usage
 
-```typescript
-// ./functions/_middleware.ts
-
-import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
-
-export const onRequest: PagesFunction = mailChannelsPlugin({
-  "Access-Control-Allow-Origin": "*",
-});
-```
+Documentation available on [Cloudflare's Developer Docs](https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/).
