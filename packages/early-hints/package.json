@@ -1,0 +1,15 @@
+{
+  "name": "early-hints-plugins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wrangler": "^2.0.16"
+  }
+}
