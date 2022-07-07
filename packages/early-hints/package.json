@@ -1,15 +1,14 @@
 {
-  "name": "early-hints-plugins",
+  "name": "@cloudflare/early-hints-plugins",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+ "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
   "scripts": {
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "wrangler": "^2.0.16"
   }
 }
