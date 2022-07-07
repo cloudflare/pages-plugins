@@ -1,5 +1,5 @@
 {
-  "name": "@cloudflare/early-hints-plugins",
+  "name": "@cloudflare/pages-plugin-early-hints",
   "version": "1.0.0",
   "main": "index.js",
  "types": "index.d.ts",

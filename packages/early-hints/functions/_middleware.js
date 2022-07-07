@@ -9,14 +9,13 @@ export async function onRequest({ request, next }) {
 		return response;
 	}
 
-	const CheckContentType = response.headers.get("content-type");
+	const contentType = response.headers.get("content-type");
 
-	if (!CheckContentType.includes("text/html") || CheckContentType === null) {
-		console.log(`${request.url} is not a text/html, skipping`);
+	if (!contentType.includes("text/html") || contentType === null) {
 		return response;
 	}
 
-	const preloads = []; // Array to store the preloads
+	const links = [];
 
 	// Check for the supported formats then add them to the preloads array
 	class ElementHandler {
@@ -25,7 +24,7 @@ export async function onRequest({ request, next }) {
 			const rel = element.getAttribute("rel");
 			const as = element.getAttribute("as");
 			if (url && !url.startsWith("data:") && !url.startsWith("http")) {
-				preloads.push({ url, rel, as });
+				links.push({ url, rel, as });
 			}
 		}
 	}
@@ -40,7 +39,7 @@ export async function onRequest({ request, next }) {
 	const headers = new Headers(addwithRewriter.headers);
 
 	// 2. Create a new response with the preloads
-	preloads.forEach(({ url, rel, as }) => {
+	links.forEach(({ url, rel, as }) => {
 		// TODO: Figure out `rel` and `as`
 		let link = `<${url}>; rel="${rel}"`;
 		if (as) {

@@ -1,5 +1,3 @@
-export type PluginArgs = {
-	
-};
+export type PluginArgs = {};
 
-export default function (args: PluginArgs): PagesFunction;
+export default function (args?: PluginArgs): PagesFunction;

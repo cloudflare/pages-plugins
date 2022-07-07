@@ -33,4 +33,4 @@ Check out these examples:
 - [Honeycomb](./packages/honeycomb)
 - [Sentry](./packages/sentry)
 - [Stytch](./packages/stytch)
-- [Early hints](./packages/early-hints/)
+- [Early Hints](./packages/early-hints/)
