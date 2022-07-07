@@ -1,8 +1,8 @@
 {
   "name": "@cloudflare/pages-plugin-early-hints",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
- "types": "index.d.ts",
+  "types": "index.d.ts",
   "files": [
     "index.js",
     "index.d.ts",
