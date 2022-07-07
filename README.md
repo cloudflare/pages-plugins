@@ -27,6 +27,7 @@ Check out our [Developer Docs](https://developers.cloudflare.com/pages/platform/
 Check out these examples:
 
 - [Cloudflare Access](./packages/cloudflare-access)
+- [Early Hints](./packages/early-hints/)
 - [Google Chat](./packages/google-chat)
 - [GraphQL](./packages/graphql)
 - [hCaptcha](./packages/hcaptcha)
