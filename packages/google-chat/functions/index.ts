@@ -1,4 +1,3 @@
-import { KJUR } from "jsrsasign";
 import type { PluginArgs } from "..";
 
 type GoogleChatPagesPluginFunction<
@@ -11,41 +10,129 @@ const extractJWTFromRequest = (request: Request) => {
   return request.headers.get("Authorization").split("Bearer ")[1];
 };
 
-const isAuthorized = async (request: Request) => {
-  const jwt = extractJWTFromRequest(request);
-
-  const { kid } = KJUR.jws.JWS.parse(jwt)
-    .headerObj as KJUR.jws.JWS.JWSResult["headerObj"] & { kid: string };
-
-  const keysResponse = await fetch(
-    "https://www.googleapis.com/service_accounts/v1/metadata/x509/chat@system.gserviceaccount.com"
+// Adapted slightly from https://github.com/cloudflare/workers-access-external-auth-example
+const base64URLDecode = (s: string) => {
+  s = s.replace(/-/g, "+").replace(/_/g, "/").replace(/\s/g, "");
+  return new Uint8Array(
+    Array.prototype.map.call(atob(s), (c: string) => c.charCodeAt(0))
   );
-  const keys = (await keysResponse.json()) as Record<string, string>;
-  const cert = Object.entries(keys).find(([id, cert]) => id === kid)[1];
-
-  return KJUR.jws.JWS.verifyJWT(jwt, cert, { alg: ["RS256"] });
 };
+
+const asciiToUint8Array = (s: string) => {
+  let chars = [];
+  for (let i = 0; i < s.length; ++i) {
+    chars.push(s.charCodeAt(i));
+  }
+  return new Uint8Array(chars);
+};
+
+const generateValidator =
+  ({ aud }: { aud?: string }) =>
+  async (request: Request) => {
+    const jwt = extractJWTFromRequest(request);
+
+    const parts = jwt.split(".");
+    if (parts.length !== 3) {
+      throw new Error("JWT does not have three parts.");
+    }
+    const [header, payload, signature] = parts;
+
+    const textDecoder = new TextDecoder("utf-8");
+    const { kid, alg, typ } = JSON.parse(
+      textDecoder.decode(base64URLDecode(header))
+    );
+    if (typ !== "JWT" || alg !== "RS256") {
+      throw new Error("Unknown JWT type or algorithm.");
+    }
+
+    const unroundedSecondsSinceEpoch = Date.now() / 1000;
+
+    const payloadObj = JSON.parse(textDecoder.decode(base64URLDecode(payload)));
+
+    if (
+      payloadObj.iss &&
+      payloadObj.iss !== "chat@system.gserviceaccount.com"
+    ) {
+      throw new Error("JWT issuer is incorrect.");
+    }
+    if (payloadObj.aud && aud && payloadObj.aud !== aud) {
+      throw new Error("JWT audience is incorrect.");
+    }
+    if (
+      payloadObj.exp &&
+      Math.floor(unroundedSecondsSinceEpoch) >= payloadObj.exp
+    ) {
+      throw new Error("JWT has expired.");
+    }
+    if (
+      payloadObj.nbf &&
+      Math.ceil(unroundedSecondsSinceEpoch) < payloadObj.nbf
+    ) {
+      throw new Error("JWT is not yet valid.");
+    }
+
+    const keysResponse = await fetch(
+      "https://www.googleapis.com/service_accounts/v1/jwk/chat@system.gserviceaccount.com"
+    );
+    const { keys } = (await keysResponse.json()) as {
+      keys: ({
+        kid: string;
+      } & JsonWebKey)[];
+    };
+    if (!keys) {
+      throw new Error("Could not fetch signing keys.");
+    }
+    const jwk = keys.find((key) => key.kid === kid);
+    if (!jwk) {
+      throw new Error("Could not find matching signing key.");
+    }
+    if (jwk.kty !== "RSA" || jwk.alg !== "RS256") {
+      throw new Error("Unknown key type of algorithm.");
+    }
+
+    const key = await crypto.subtle.importKey(
+      "jwk",
+      jwk,
+      { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+      false,
+      ["verify"]
+    );
+
+    const verified = await crypto.subtle.verify(
+      "RSASSA-PKCS1-v1_5",
+      key,
+      base64URLDecode(signature),
+      asciiToUint8Array(`${header}.${payload}`)
+    );
+    if (!verified) {
+      throw new Error("Could not verify JWT.");
+    }
+  };
 
 export const onRequestPost: GoogleChatPagesPluginFunction = async ({
   request,
   pluginArgs,
 }) => {
-  let authorized = false;
   try {
-    authorized = await isAuthorized(request);
+    const validator = generateValidator({
+      aud: "aud" in pluginArgs ? pluginArgs.aud : undefined,
+    });
+
+    await validator(request);
+
+    const eventHandler =
+      "handleEvent" in pluginArgs ? pluginArgs.handleEvent : pluginArgs;
+
+    const message = await eventHandler(await request.json());
+
+    if (message !== undefined) {
+      return new Response(JSON.stringify(message), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    return new Response(null);
   } catch {}
 
-  if (!authorized) {
-    return new Response(null, { status: 403 });
-  }
-
-  const message = await pluginArgs(await request.json());
-
-  if (message !== undefined) {
-    return new Response(JSON.stringify(message), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  return new Response(null);
+  return new Response(null, { status: 403 });
 };
