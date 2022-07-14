@@ -11,11 +11,5 @@
   ],
   "scripts": {
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
-  },
-  "devDependencies": {
-    "@types/jsrsasign": "^10.2.1"
-  },
-  "dependencies": {
-    "jsrsasign": "^10.5.17"
   }
 }
