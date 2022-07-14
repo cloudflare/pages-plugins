@@ -6,6 +6,9 @@ interface EmailAddress {
 export interface Personalization {
   to: [EmailAddress, ...EmailAddress[]];
   from?: EmailAddress;
+  dkim_domain?: string;
+  dkim_private_key?: string;
+  dkim_selector?: string;
   reply_to?: EmailAddress;
   cc?: EmailAddress[];
   bcc?: EmailAddress[];
