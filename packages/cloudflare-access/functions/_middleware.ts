@@ -51,6 +51,30 @@ const generateValidator =
     }
 
     const certsURL = new URL("/cdn-cgi/access/certs", domain);
+
+    const unroundedSecondsSinceEpoch = Date.now() / 1000;
+
+    const payloadObj = JSON.parse(textDecoder.decode(base64URLDecode(payload)));
+
+    if (payloadObj.iss && payloadObj.iss !== certsURL.origin) {
+      throw new Error("JWT issuer is incorrect.");
+    }
+    if (payloadObj.aud && payloadObj.aud !== aud) {
+      throw new Error("JWT audience is incorrect.");
+    }
+    if (
+      payloadObj.exp &&
+      Math.floor(unroundedSecondsSinceEpoch) >= payloadObj.exp
+    ) {
+      throw new Error("JWT has expired.");
+    }
+    if (
+      payloadObj.nbf &&
+      Math.ceil(unroundedSecondsSinceEpoch) < payloadObj.nbf
+    ) {
+      throw new Error("JWT is not yet valid.");
+    }
+
     const certsResponse = await fetch(certsURL.toString());
     const { keys } = (await certsResponse.json()) as {
       keys: ({
@@ -77,29 +101,6 @@ const generateValidator =
       false,
       ["verify"]
     );
-
-    const unroundedSecondsSinceEpoch = Date.now() / 1000;
-
-    const payloadObj = JSON.parse(textDecoder.decode(base64URLDecode(payload)));
-
-    if (payloadObj.iss && payloadObj.iss !== certsURL.origin) {
-      throw new Error("JWT issuer is incorrect.");
-    }
-    if (payloadObj.aud && payloadObj.aud !== aud) {
-      throw new Error("JWT audience is incorrect.");
-    }
-    if (
-      payloadObj.exp &&
-      Math.floor(unroundedSecondsSinceEpoch) >= payloadObj.exp
-    ) {
-      throw new Error("JWT has expired.");
-    }
-    if (
-      payloadObj.nbf &&
-      Math.ceil(unroundedSecondsSinceEpoch) < payloadObj.nbf
-    ) {
-      throw new Error("JWT is not yet valid.");
-    }
 
     const verified = await crypto.subtle.verify(
       "RSASSA-PKCS1-v1_5",

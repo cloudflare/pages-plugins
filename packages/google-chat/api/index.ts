@@ -1,4 +1,3 @@
-import { KJUR } from "jsrsasign";
 import type { chat_v1 } from "@googleapis/chat";
 
 const ONE_MINUTE = 60;
