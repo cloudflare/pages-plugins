@@ -43,10 +43,10 @@ const generateValidator =
     const [header, payload, signature] = parts;
 
     const textDecoder = new TextDecoder("utf-8");
-    const { kid, alg, typ } = JSON.parse(
+    const { kid, alg } = JSON.parse(
       textDecoder.decode(base64URLDecode(header))
     );
-    if (typ !== "JWT" || alg !== "RS256") {
+    if (alg !== "RS256") {
       throw new Error("Unknown JWT type or algorithm.");
     }
 
@@ -85,7 +85,7 @@ const generateValidator =
     if (payloadObj.iss && payloadObj.iss !== certsURL.origin) {
       throw new Error("JWT issuer is incorrect.");
     }
-    if (payloadObj.aud && payloadObj.aud !== aud) {
+    if (payloadObj.aud && !payloadObj.aud.includes(aud)) {
       throw new Error("JWT audience is incorrect.");
     }
     if (
