@@ -7,8 +7,7 @@
     "build:prod": "npm run build:prod --workspace=./example",
     "prestart": "npm run build",
     "start": "npm run start --workspace=./example",
-    "prepublish": "npm run build",
-    "publish": "npx changeset publish"
+    "publish": "npm run build && npx changeset publish"
   },
   "workspaces": [
     "example",
