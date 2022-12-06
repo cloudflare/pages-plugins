@@ -12,6 +12,6 @@
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
   },
   "dependencies": {
-    "toucan-js": "^2.6.0"
+    "toucan-js": "^3.0.0"
   }
 }

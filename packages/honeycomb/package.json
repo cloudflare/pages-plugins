@@ -12,6 +12,6 @@
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
   },
   "dependencies": {
-    "@cloudflare/workers-honeycomb-logger": "^2.1.0"
+    "@cloudflare/workers-honeycomb-logger": "^2.3.3"
   }
 }

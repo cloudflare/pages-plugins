@@ -1,4 +1,4 @@
-import Toucan from "toucan-js";
+import { Toucan } from "toucan-js";
 import type { PluginArgs, PluginData } from "..";
 
 type SentryPagesPluginFunction<
