@@ -37,7 +37,7 @@ export type JWTPayload = {
 
 export type PluginArgs = {
   aud: string;
-  domain: string;
+  domain: `https://${string}.cloudflareaccess.com`;
 };
 
 export type PluginData = {
