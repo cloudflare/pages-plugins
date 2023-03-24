@@ -1,0 +1,18 @@
+{
+	"name": "@cloudflare/pages-plugin-vercel-og",
+	"version": "0.1.0",
+	"main": "dist/index.js",
+	"types": "index.d.ts",
+	"files": [
+		"dist/",
+		"index.d.ts",
+		"tsconfig.json",
+		"api/"
+	],
+	"scripts": {
+		"build": "npx wrangler pages functions build --plugin --outdir=dist"
+	},
+	"dependencies": {
+		"@vercel/og": "0.4.1"
+	}
+}

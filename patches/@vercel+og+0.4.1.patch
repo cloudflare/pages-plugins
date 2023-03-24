@@ -1,0 +1,47 @@
+diff --git a/node_modules/@vercel/og/dist/index.edge.d.ts b/node_modules/@vercel/og/dist/index.edge.d.ts
+index eab3ed7..3a5f9ad 100644
+--- a/node_modules/@vercel/og/dist/index.edge.d.ts
++++ b/node_modules/@vercel/og/dist/index.edge.d.ts
+@@ -1,5 +1,5 @@
+ import type { ReactElement } from 'react';
+ import type { ImageResponseOptions } from './types';
+-export declare class ImageResponse {
++export declare class ImageResponse extends Response {
+     constructor(element: ReactElement, options?: ImageResponseOptions);
+ }
+diff --git a/node_modules/@vercel/og/dist/index.edge.js b/node_modules/@vercel/og/dist/index.edge.js
+index 33895c5..5862810 100644
+--- a/node_modules/@vercel/og/dist/index.edge.js
++++ b/node_modules/@vercel/og/dist/index.edge.js
+@@ -6,11 +6,11 @@ import {
+ import satori, { init as initSatori } from "satori/wasm";
+ import initYoga from "yoga-wasm-web";
+ import * as resvg from "@resvg/resvg-wasm";
+-import resvg_wasm from "./resvg.wasm?module";
+-import yoga_wasm from "./yoga.wasm?module";
++import resvg_wasm from "./resvg.wasm";
++import yoga_wasm from "./yoga.wasm";
++import fallbackFont from './noto-sans-v27-latin-regular.ttf.bin';
+ var initializedResvg = resvg.initWasm(resvg_wasm);
+ var initializedYoga = initYoga(yoga_wasm).then((yoga) => initSatori(yoga));
+-var fallbackFont = fetch(new URL("./noto-sans-v27-latin-regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+ var _a, _b;
+ var isDev = ((_b = (_a = globalThis == null ? void 0 : globalThis.process) == null ? void 0 : _a.env) == null ? void 0 : _b.NODE_ENV) === "development";
+ var ImageResponse = class {
+diff --git a/node_modules/@vercel/og/dist/index.node.d.ts b/node_modules/@vercel/og/dist/index.node.d.ts
+index 66edc70..22b42ba 100644
+--- a/node_modules/@vercel/og/dist/index.node.d.ts
++++ b/node_modules/@vercel/og/dist/index.node.d.ts
+@@ -2,7 +2,7 @@
+ import type { ReactElement } from 'react';
+ import type { ImageResponseNodeOptions, ImageResponseOptions } from './types';
+ import { Readable } from 'stream';
+-export declare class ImageResponse {
++export declare class ImageResponse extends Response {
+     constructor(element: ReactElement, options?: ImageResponseOptions);
+ }
+ /**
+diff --git a/node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf b/node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf.bin
+similarity index 100%
+rename from node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf
+rename to node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf.bin
