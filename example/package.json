@@ -1,13 +1,14 @@
 {
-  "name": "pages-plugins-example",
-  "private": true,
-  "version": "1.0.0",
-  "dependencies": {
-    "graphql": "^16.3.0"
-  },
-  "scripts": {
-    "clean": "rm -f static/_worker.js",
-    "build:prod": "npx wrangler pages functions build --outfile static/_worker.js",
-    "start": "npx wrangler pages dev static"
-  }
+	"name": "pages-plugins-example",
+	"private": true,
+	"version": "1.0.0",
+	"dependencies": {
+		"graphql": "^16.3.0",
+		"react": "^18.2.0"
+	},
+	"scripts": {
+		"clean": "rm -f static/_worker.js",
+		"build:prod": "npx wrangler pages functions build --outfile static/_worker.js",
+		"start": "npx wrangler pages dev static"
+	}
 }
