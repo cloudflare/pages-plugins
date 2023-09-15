@@ -81,17 +81,18 @@ export const onRequest: MailChannelsPagesPluginFunction = async (context) => {
             },
           ];
 
-      const { success } = await sendEmail({
+      const { success, errors } = await sendEmail({
         personalizations,
         from,
         subject,
         content,
       });
+
       if (success) {
         return pluginArgs.respondWith(submission);
       }
 
-      return new Response(`Could not send your email. Please try again.`, {
+      return new Response(`Could not send your email: ${errors.join(', ')}`, {
         status: 512,
       });
     },
