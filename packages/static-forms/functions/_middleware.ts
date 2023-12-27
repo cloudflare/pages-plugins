@@ -33,7 +33,6 @@ export const onRequestGet: StaticFormPagesPluginFunction = async ({ next }) => {
       element(form) {
         if (form.hasAttribute("data-static-form-name")) {
           const formName = form.getAttribute("data-static-form-name");
-          form.getAttribute("data-static-form-name");
           form.setAttribute("method", "POST");
           form.append(
             `<input type="hidden" name="static-form-name" value="${formName}" />`,
