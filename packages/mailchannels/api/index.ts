@@ -53,7 +53,7 @@ export const sendEmail = async (
   if (response.status === 202) return { success: true };
 
   try {
-    const { errors } = await response.clone().json();
+    const { errors } = await response.clone().json<{errors?: any[]}>();
     return { success: false, errors };
   } catch {
     return { success: false, errors: [response.statusText] };
