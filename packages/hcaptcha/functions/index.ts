@@ -7,7 +7,7 @@ type hCaptchaPagesPluginFunction<
 > = PagesPluginFunction<Env, Params, Data & PluginData, PluginArgs>;
 
 const errorStringMap = {
-  "missing-input-secret	": "Your secret key is missing.",
+  "missing-input-secret": "Your secret key is missing.",
 
   "invalid-input-secret": "Your secret key is invalid or malformed.",
 
