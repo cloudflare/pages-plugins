@@ -26,9 +26,13 @@ const errorStringMap = {
 	"timeout-or-duplicate":
 		"The response parameter has already been validated before.",
 
+	"invalid-idempotency-key": "The provided idempotendy key was malformed.",
+
 	"internal-error":
 		"An internal error happened while validating the response. The request can be retried.",
-};
+}
+
+const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 export const onRequest: turnstilePagesPluginFunction = async (context) => {
 	const {
@@ -37,7 +41,6 @@ export const onRequest: turnstilePagesPluginFunction = async (context) => {
 			.get("cf-turnstile-response")
 			.toString(),
 		remoteip = context.request.headers.get("CF-Connecting-IP"),
-		sitekey,
 		idempotency_key: idempotencyKey,
 		onError,
 	} = context.pluginArgs;
@@ -46,11 +49,10 @@ export const onRequest: turnstilePagesPluginFunction = async (context) => {
 	formData.set("secret", secret);
 	formData.set("response", turnstileResponse);
 	if (remoteip) formData.set("remoteip", remoteip);
-	if (sitekey) formData.set("sitekey", sitekey);
 	if (idempotencyKey) formData.set("idempotency_key", idempotencyKey);
 
 	const response = await fetch(
-		"https://challenges.cloudflare.com/turnstile/v0/siteverify",
+		SITEVERIFY_URL,
 		{
 			method: "POST",
 			body: formData,

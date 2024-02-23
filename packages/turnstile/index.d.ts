@@ -2,7 +2,6 @@ export type PluginArgs = {
 	secret: string;
 	response?: string;
 	remoteip?: string;
-	sitekey?: string;
 	idempotency_key?: string;
 	onError?: PagesFunction<unknown, any, PluginData>;
 };
