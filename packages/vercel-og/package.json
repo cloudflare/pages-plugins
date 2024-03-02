@@ -1,18 +1,32 @@
 {
-	"name": "@cloudflare/pages-plugin-vercel-og",
-	"version": "0.1.0",
-	"main": "dist/index.js",
-	"types": "index.d.ts",
-	"files": [
-		"dist/",
-		"index.d.ts",
-		"tsconfig.json",
-		"api/"
-	],
-	"scripts": {
-		"build": "npx wrangler pages functions build --plugin --outdir=dist"
-	},
-	"dependencies": {
-		"@vercel/og": "0.4.1"
-	}
+  "name": "@cloudflare/pages-plugin-vercel-og",
+  "version": "0.1.0",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/vercel-og/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/vercel-og"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist/",
+    "index.d.ts",
+    "tsconfig.json",
+    "api/"
+  ],
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outdir=dist"
+  },
+  "dependencies": {
+    "@vercel/og": "0.4.1"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  }
 }

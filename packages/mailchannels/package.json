@@ -1,6 +1,16 @@
 {
   "name": "@cloudflare/pages-plugin-mailchannels",
   "version": "0.1.2",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/mailchannels"
+  },
+  "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -12,5 +22,9 @@
   "scripts": {
     "prebuild": "cd ../static-forms; npm run build",
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
   }
 }

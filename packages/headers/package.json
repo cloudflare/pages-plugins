@@ -1,7 +1,17 @@
 {
   "name": "@cloudflare/pages-plugin-headers",
-  "private": true,
   "version": "0.1.1",
+  "private": true,
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/headers/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/headers"
+  },
+  "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -11,5 +21,9 @@
   ],
   "scripts": {
     "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
   }
 }

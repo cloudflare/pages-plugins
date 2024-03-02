@@ -1,6 +1,16 @@
 {
   "name": "@cloudflare/pages-plugin-sentry",
   "version": "1.1.1",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/sentry/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/sentry"
+  },
+  "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -13,5 +23,9 @@
   },
   "dependencies": {
     "toucan-js": "^3.0.0"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
   }
 }

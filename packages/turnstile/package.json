@@ -1,14 +1,28 @@
 {
-	"name": "@cloudflare/pages-plugin-turnstile",
-	"version": "1.0.0",
-	"main": "index.js",
-	"types": "index.d.ts",
-	"files": [
-		"index.js",
-		"index.d.ts",
-		"tsconfig.json"
-	],
-	"scripts": {
-		"build": "npx wrangler pages functions build --plugin --outfile index.js"
-	}
+  "name": "@cloudflare/pages-plugin-turnstile",
+  "version": "1.0.0",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/turnstile/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/turnstile"
+  },
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  }
 }
