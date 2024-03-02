@@ -1,6 +1,6 @@
 import type {
-  RequestTracer,
   Config,
+  RequestTracer,
 } from "@cloudflare/workers-honeycomb-logger";
 
 export type PluginArgs = Config & { apiKey: string; dataset: string };

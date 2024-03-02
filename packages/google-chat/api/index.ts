@@ -1,5 +1,5 @@
-import { KJUR } from "jsrsasign";
 import type { chat_v1 } from "@googleapis/chat";
+import { KJUR } from "jsrsasign";
 
 const ONE_MINUTE = 60;
 
@@ -45,7 +45,7 @@ export class GoogleChatAPI {
         "RS256",
         sHeader,
         sPayload,
-        this.privateKey
+        this.privateKey,
       );
 
       const response = await fetch("https://oauth2.googleapis.com/token", {
@@ -92,7 +92,7 @@ export class GoogleChatAPI {
       | {
           name: string;
         }
-      | { space: string }
+      | { space: string },
   ): Promise<chat_v1.Schema$Space> => {
     const url =
       "name" in args
@@ -104,7 +104,7 @@ export class GoogleChatAPI {
 
   listSpaces = async (
     _: undefined,
-    { pageSize, pageToken }: { pageSize?: number; pageToken?: string } = {}
+    { pageSize, pageToken }: { pageSize?: number; pageToken?: string } = {},
   ): Promise<{ nextPageToken?: string; spaces: chat_v1.Schema$Space[] }> => {
     const urlSearchParams = new URLSearchParams({
       ...(pageSize !== undefined ? { pageSize: pageSize.toString() } : {}),
@@ -117,7 +117,7 @@ export class GoogleChatAPI {
   };
 
   getMember = async (
-    args: { name: string } | { space: string; member: string }
+    args: { name: string } | { space: string; member: string },
   ): Promise<chat_v1.Schema$Membership> => {
     const url =
       "name" in args
@@ -129,7 +129,7 @@ export class GoogleChatAPI {
 
   listMembers = async (
     args: { parent: string } | { space: string },
-    { pageSize, pageToken }: { pageSize?: number; pageToken?: string }
+    { pageSize, pageToken }: { pageSize?: number; pageToken?: string },
   ): Promise<{
     nextPageToken: string;
     memberships: chat_v1.Schema$Membership[];
@@ -141,7 +141,7 @@ export class GoogleChatAPI {
     const url = new URL(
       "parent" in args
         ? `https://chat.googleapis.com/v1/${args.parent}/members`
-        : `https://chat.googleapis.com/v1/spaces/${args.space}/members`
+        : `https://chat.googleapis.com/v1/spaces/${args.space}/members`,
     );
     url.search = urlSearchParams.toString();
 
@@ -155,16 +155,16 @@ export class GoogleChatAPI {
         }
       | { space: string },
     { threadKey, requestId }: { threadKey?: string; requestId?: string } = {},
-    message: chat_v1.Schema$Message
+    message: chat_v1.Schema$Message,
   ): Promise<chat_v1.Schema$Message> => {
     const urlSearchParams = new URLSearchParams({
       ...(threadKey !== undefined ? { threadKey } : {}),
       ...(requestId !== undefined ? { requestId } : {}),
     });
-    let url = new URL(
+    const url = new URL(
       "parent" in args
         ? `https://chat.googleapis.com/v1/${args.parent}`
-        : `https://chat.googleapis.com/v1/spaces/${args.space}/messages`
+        : `https://chat.googleapis.com/v1/spaces/${args.space}/messages`,
     );
     url.search = urlSearchParams.toString();
 
@@ -179,7 +179,7 @@ export class GoogleChatAPI {
       | {
           name: string;
         }
-      | { space: string; message: string }
+      | { space: string; message: string },
   ): Promise<{}> => {
     const url =
       "name" in args
@@ -194,7 +194,7 @@ export class GoogleChatAPI {
       | {
           name: string;
         }
-      | { space: string; message: string }
+      | { space: string; message: string },
   ): Promise<chat_v1.Schema$Message> => {
     const url =
       "name" in args
@@ -212,7 +212,7 @@ export class GoogleChatAPI {
       | { name: string }
       | { space: string; message: string },
     { updateMask }: { updateMask?: string } = {},
-    message: chat_v1.Schema$Message
+    message: chat_v1.Schema$Message,
   ): Promise<chat_v1.Schema$Message> => {
     const urlSearchParams = new URLSearchParams({
       ...(updateMask !== undefined ? { updateMask } : {}),
@@ -221,8 +221,8 @@ export class GoogleChatAPI {
       "message.name" in args
         ? `https://chat.googleapis.com/v1/${args["message.name"]}`
         : "name" in args
-        ? `https://chat.googleapis.com/v1/${args.name}`
-        : `https://chat.googleapis.com/v1/spaces/${args.space}/messages/${args.message}`
+          ? `https://chat.googleapis.com/v1/${args.name}`
+          : `https://chat.googleapis.com/v1/spaces/${args.space}/messages/${args.message}`,
     );
     url.search = urlSearchParams.toString();
 
@@ -241,7 +241,7 @@ export class GoogleChatAPI {
           space: string;
           message: string;
           attachment: string;
-        }
+        },
   ): Promise<chat_v1.Schema$Attachment> => {
     const url =
       "name" in args

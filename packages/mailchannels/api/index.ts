@@ -40,7 +40,7 @@ interface Failure {
 }
 
 export const sendEmail = async (
-  payload: MailSendBody
+  payload: MailSendBody,
 ): Promise<Success | Failure> => {
   const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",

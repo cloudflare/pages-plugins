@@ -3,7 +3,7 @@ import type { PluginArgs } from "..";
 type HeadersPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 export const onRequest: HeadersPagesPluginFunction = async ({

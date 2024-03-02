@@ -4,7 +4,7 @@ import { generateLoginURL, getIdentity } from "../api";
 type CloudflareAccessPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 const extractJWTFromRequest = (request: Request) =>
@@ -14,12 +14,12 @@ const extractJWTFromRequest = (request: Request) =>
 const base64URLDecode = (s: string) => {
   s = s.replace(/-/g, "+").replace(/_/g, "/").replace(/\s/g, "");
   return new Uint8Array(
-    Array.prototype.map.call(atob(s), (c: string) => c.charCodeAt(0))
+    Array.prototype.map.call(atob(s), (c: string) => c.charCodeAt(0)),
   );
 };
 
 const asciiToUint8Array = (s: string) => {
-  let chars = [];
+  const chars = [];
   for (let i = 0; i < s.length; ++i) {
     chars.push(s.charCodeAt(i));
   }
@@ -29,7 +29,7 @@ const asciiToUint8Array = (s: string) => {
 const generateValidator =
   ({ domain, aud }: { domain: string; aud: string }) =>
   async (
-    request: Request
+    request: Request,
   ): Promise<{
     jwt: string;
     payload: object;
@@ -44,7 +44,7 @@ const generateValidator =
 
     const textDecoder = new TextDecoder("utf-8");
     const { kid, alg } = JSON.parse(
-      textDecoder.decode(base64URLDecode(header))
+      textDecoder.decode(base64URLDecode(header)),
     );
     if (alg !== "RS256") {
       throw new Error("Unknown JWT type or algorithm.");
@@ -75,7 +75,7 @@ const generateValidator =
       jwk,
       { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
       false,
-      ["verify"]
+      ["verify"],
     );
 
     const unroundedSecondsSinceEpoch = Date.now() / 1000;
@@ -105,7 +105,7 @@ const generateValidator =
       "RSASSA-PKCS1-v1_5",
       key,
       base64URLDecode(signature),
-      asciiToUint8Array(`${header}.${payload}`)
+      asciiToUint8Array(`${header}.${payload}`),
     );
     if (!verified) {
       throw new Error("Could not verify JWT.");

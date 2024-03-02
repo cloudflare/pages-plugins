@@ -1,6 +1,5 @@
-import honeycombPlugin from "@cloudflare/pages-plugin-honeycomb";
-import sentryPlugin from "@cloudflare/pages-plugin-sentry";
 import headersPlugin from "@cloudflare/pages-plugin-headers";
+import honeycombPlugin from "@cloudflare/pages-plugin-honeycomb";
 import mailchannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
 export const onRequest: PagesFunction[] = [
