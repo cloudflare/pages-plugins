@@ -12,8 +12,4 @@
 "@cloudflare/pages-plugin-stytch": patch
 ---
 
-chore: Now builds Plugin with `--outdir` option to ensure accompanying files are brought along
-
-Plus, now builds any accompanying sources with esbuild so patches are applied.
-
-And also updates `package.json` to be more complete.
+maintenance: Build Plugins with newer `--outdir` option, actually build the APIs of Plugins, and update `package.json`s to be more complete.

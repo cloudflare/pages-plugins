@@ -2,4 +2,6 @@
 "@cloudflare/pages-plugin-vercel-og": patch
 ---
 
-chore: Fix API, but at the expense of only being able to use either the API or the regular Plugin
+chore: Fix `@cloudflare/pages-plugin-vercel-og/api`.
+
+Previously, the API wasn't built and the Wasm/binary files weren't being brought along. This change now produces a bundle with these files.
