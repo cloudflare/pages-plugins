@@ -29,16 +29,15 @@ export const onRequestGet: StaticFormPagesPluginFunction = async ({ next }) => {
   const response = await next();
 
   return new HTMLRewriter()
-    .on("form", {
+    .on("form[data-static-form-name]", {
       element(form) {
-        if (form.hasAttribute("data-static-form-name")) {
-          const formName = form.getAttribute("data-static-form-name");
-          form.setAttribute("method", "POST");
-          form.append(
-            `<input type="hidden" name="static-form-name" value="${formName}" />`,
-            { html: true },
-          );
-        }
+        const formName = form.getAttribute("data-static-form-name");
+        form.setAttribute("method", "POST");
+        form.removeAttribute("action");
+        form.append(
+          `<input type="hidden" name="static-form-name" value="${formName}" />`,
+          { html: true },
+        );
       },
     })
     .transform(response);
