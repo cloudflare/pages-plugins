@@ -1,6 +1,6 @@
 {
   "name": "@cloudflare/pages-plugin-sentry",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/sentry/",
   "bugs": {
     "url": "https://github.com/cloudflare/pages-plugins/issues"

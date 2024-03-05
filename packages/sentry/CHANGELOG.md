@@ -1,5 +1,12 @@
 # @cloudflare/pages-plugin-sentry
 
+## 1.1.2
+
+### Patch Changes
+
+- 6089299: maintenance: Build Plugins with newer `--outdir` option, actually build the APIs of Plugins, and update `package.json`s to be more complete.
+- 34b1707: fix: Correctly type the PluginData (`context.data.sentry`) as a Toucan instance
+
 ## 1.1.0
 
 ### Minor Changes
