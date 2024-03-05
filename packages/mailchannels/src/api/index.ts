@@ -40,7 +40,7 @@ interface Failure {
 }
 
 export const sendEmail = async (
-  payload: MailSendBody
+  payload: MailSendBody,
 ): Promise<Success | Failure> => {
   const response = await fetch("https://api.mailchannels.net/tx/v1/send", {
     method: "POST",
@@ -53,6 +53,8 @@ export const sendEmail = async (
   if (response.status === 202) return { success: true };
 
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { errors } = await response.clone().json();
     return { success: false, errors };
   } catch {

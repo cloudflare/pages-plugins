@@ -1,9 +1,9 @@
-import { PluginArgs } from "..";
+import { PluginArgs } from "@cloudflare/pages-plugin-static-forms";
 
 type StaticFormPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 export const onRequestPost: StaticFormPagesPluginFunction = async ({
@@ -36,7 +36,7 @@ export const onRequestGet: StaticFormPagesPluginFunction = async ({ next }) => {
         form.removeAttribute("action");
         form.append(
           `<input type="hidden" name="static-form-name" value="${formName}" />`,
-          { html: true }
+          { html: true },
         );
       },
     })

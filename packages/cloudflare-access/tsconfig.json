@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "lib": ["ES2020"],
-    "types": ["@cloudflare/workers-types"]
-  }
+    "outDir": "./dist/types/",
+    "rootDir": "./src/"
+  },
+  "extends": "../../tsconfig.src.json",
+  "include": ["./src/**/*"]
 }

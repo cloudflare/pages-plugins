@@ -1,22 +1,48 @@
 {
   "name": "@cloudflare/pages-plugin-google-chat",
   "version": "1.0.2",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/google-chat/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/google-chat"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/functions/index.js"
+    },
+    "./api": {
+      "types": "./dist/types/api/index.d.ts",
+      "default": "./dist/src/api/index.js"
+    }
+  },
+  "main": "./dist/functions/index.js",
+  "types": "./index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "tsconfig.json",
-    "api/"
+    "./CHANGELOG.md",
+    "./index.d.ts",
+    "./dist/"
   ],
   "scripts": {
-    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+    "build": "npm run build:src && npm run build:functions",
+    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap --external=@cloudflare/pages-plugin-google-chat/api",
+    "prebuild:src": "npm run build:src:types",
+    "build:src": "npx esbuild ./src/**/* --outdir=./dist/src --bundle --platform=neutral --format=esm --main-fields=module,browser,main --conditions=workerd --outbase=./src --sourcemap",
+    "build:src:types": "npx tsc",
+    "prepack": "npm run build"
   },
   "devDependencies": {
     "@googleapis/chat": "^9.0.0",
-    "@types/jsrsasign": "^10.5.4"
-  },
-  "dependencies": {
+    "@types/jsrsasign": "^10.5.4",
     "jsrsasign": "^10.6.1"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
   }
 }

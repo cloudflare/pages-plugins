@@ -197,7 +197,6 @@ dist
 ### FUNCTIONS ###
 _worker.js
 cdn-cgi/
-packages/*/index.js
 
 ### WRANGLER ###
 !/vendor/wrangler*.tgz

@@ -1,9 +1,9 @@
 import graphQLPlugin from "@cloudflare/pages-plugin-graphql";
 import {
-  graphql,
-  GraphQLSchema,
   GraphQLObjectType,
+  GraphQLSchema,
   GraphQLString,
+  graphql,
 } from "graphql";
 
 const schema = new GraphQLSchema({

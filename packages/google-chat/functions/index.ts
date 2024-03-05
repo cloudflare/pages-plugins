@@ -1,10 +1,10 @@
+import type { PluginArgs } from "@cloudflare/pages-plugin-google-chat";
 import { KJUR } from "jsrsasign";
-import type { PluginArgs } from "..";
 
 type GoogleChatPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 const extractJWTFromRequest = (request: Request) => {
@@ -18,7 +18,7 @@ const isAuthorized = async (request: Request) => {
     .headerObj as KJUR.jws.JWS.JWSResult["headerObj"] & { kid: string };
 
   const keysResponse = await fetch(
-    "https://www.googleapis.com/service_accounts/v1/metadata/x509/chat@system.gserviceaccount.com"
+    "https://www.googleapis.com/service_accounts/v1/metadata/x509/chat@system.gserviceaccount.com",
   );
   const keys = (await keysResponse.json()) as Record<string, string>;
   const cert = Object.entries(keys).find(([id, cert]) => id === kid)[1];

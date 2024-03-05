@@ -1,6 +1,6 @@
+import type { PluginData as CloudflareAccessPluginData } from "@cloudflare/pages-plugin-cloudflare-access";
 import cloudflareAccessPlugin from "@cloudflare/pages-plugin-cloudflare-access";
 import type { PluginData as SentryPluginData } from "@cloudflare/pages-plugin-sentry";
-import type { PluginData as CloudflareAccessPluginData } from "@cloudflare/pages-plugin-cloudflare-access";
 
 export const onRequest = [
   cloudflareAccessPlugin({

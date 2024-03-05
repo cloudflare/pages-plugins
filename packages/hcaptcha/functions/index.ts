@@ -1,9 +1,9 @@
-import type { PluginArgs, PluginData } from "..";
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-hcaptcha";
 
 type hCaptchaPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data & PluginData, PluginArgs>;
 
 const errorStringMap = {
@@ -58,7 +58,7 @@ export const onRequest: hCaptchaPagesPluginFunction = async (context) => {
     } else {
       const descriptions = context.data.hCaptcha["error-codes"].map(
         (errorCode) =>
-          errorStringMap[errorCode] || "An unexpected error has occurred."
+          errorStringMap[errorCode] || "An unexpected error has occurred.",
       );
 
       return new Response(
@@ -67,7 +67,7 @@ export const onRequest: hCaptchaPagesPluginFunction = async (context) => {
 ${descriptions.join("\n")}.
 
 Please try again.`,
-        { status: 400 }
+        { status: 400 },
       );
     }
   }

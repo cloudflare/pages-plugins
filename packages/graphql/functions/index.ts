@@ -1,9 +1,9 @@
-import type { PluginArgs } from "..";
+import type { PluginArgs } from "@cloudflare/pages-plugin-graphql";
 
 type GraphQLPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 const extractGraphQLQueryFromRequest = async (request: Request) => {

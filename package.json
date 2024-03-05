@@ -1,29 +1,80 @@
 {
-	"name": "pages-plugins",
-	"private": true,
-	"scripts": {
-		"postinstall": "patch-package",
-		"pretest": "npm run build",
-		"test": "npx vitest",
-		"build": "npm run build --workspaces --if-present",
-		"prebuild:prod": "npm run build",
-		"build:prod": "npm run build:prod --workspace=./example",
-		"prestart": "npm run build",
-		"start": "npm run start --workspace=./example",
-		"publish": "npm run build && npx changeset publish"
-	},
-	"workspaces": [
-		"example",
-		"packages/*"
-	],
-	"devDependencies": {
-		"@changesets/cli": "^2.25.2",
-		"@cloudflare/workers-types": "^4.20221111.1",
-		"@types/react": "^18.0.28",
-		"patch-package": "^6.5.1",
-		"typescript": "^4.9.3",
-		"vite": "^4.0.4",
-		"vitest": "^0.26.3",
-		"wrangler": "^2.13.0"
-	}
+  "name": "@cloudflare/pages-plugins-root",
+  "private": true,
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git"
+  },
+  "type": "module",
+  "workspaces": [
+    "example",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "prebuild:prod": "npm run build",
+    "build:prod": "npm run build:prod --workspace=./example",
+    "postinstall": "patch-package",
+    "publish": "npm run build && npx changeset publish",
+    "prestart": "npm run build",
+    "start": "npm run start --workspace=./example",
+    "pretest": "npm run build",
+    "test": "npx vitest"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-packagejson",
+      "prettier-plugin-sort-json"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "eslint-plugin-isaacscript",
+      "eslint-plugin-unicorn"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "isaacscript/no-template-curly-in-string-fix": "error",
+      "unicorn/expiring-todo-comments": "error"
+    },
+    "root": true
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "@types/react": "^18.2.61",
+    "@typescript-eslint/eslint-plugin": "7.1.0",
+    "@typescript-eslint/parser": "7.1.0",
+    "esbuild": "^0.20.1",
+    "eslint": "8.57.0",
+    "eslint-plugin-isaacscript": "3.12.2",
+    "eslint-plugin-unicorn": "51.0.1",
+    "patch-package": "^8.0.0",
+    "prettier": "3.2.5",
+    "prettier-plugin-organize-imports": "3.2.4",
+    "prettier-plugin-packagejson": "2.4.12",
+    "prettier-plugin-sort-json": "3.1.0",
+    "typescript": "5.3.3",
+    "vitest": "1.3.1",
+    "wrangler": "https://prerelease-registry.devprod.cloudflare.dev/workers-sdk/runs/8162785500/npm-package-wrangler-5172"
+  },
+  "engines": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  }
 }

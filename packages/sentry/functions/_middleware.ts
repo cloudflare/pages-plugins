@@ -1,10 +1,10 @@
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-sentry";
 import { Toucan } from "toucan-js";
-import type { PluginArgs, PluginData } from "..";
 
 type SentryPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data & PluginData, PluginArgs>;
 
 export const onRequest: SentryPagesPluginFunction = async (context) => {

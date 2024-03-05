@@ -1,10 +1,10 @@
 import { parse } from "cookie";
-import type { PluginArgs, PluginData } from "..";
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-stytch";
 
 type StytchPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data & PluginData, PluginArgs>;
 
 type Payload = (
@@ -43,7 +43,7 @@ export const onRequest: StytchPagesPluginFunction = async ({
     headers: {
       "Content-Type": "application/json",
       Authorization: `Basic ${btoa(
-        `${pluginArgs.project_id}:${pluginArgs.secret}`
+        `${pluginArgs.project_id}:${pluginArgs.secret}`,
       )}`,
     },
     body: JSON.stringify(payload),

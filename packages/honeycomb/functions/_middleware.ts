@@ -1,10 +1,13 @@
+import type {
+  PluginArgs,
+  PluginData,
+} from "@cloudflare/pages-plugin-honeycomb";
 import { RequestTracer, resolve } from "@cloudflare/workers-honeycomb-logger";
-import type { PluginArgs, PluginData } from "..";
 
 type HoneycombPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data & PluginData, PluginArgs>;
 
 type OutgoingFetcher = { fetch: typeof fetch };
@@ -12,7 +15,7 @@ type OutgoingFetcher = { fetch: typeof fetch };
 function proxyFetch(
   obj: OutgoingFetcher,
   tracer: RequestTracer,
-  name: string
+  name: string,
 ): OutgoingFetcher {
   obj.fetch = new Proxy(obj.fetch, {
     apply: (target, thisArg, argArray) => {
@@ -57,7 +60,7 @@ function proxyGet(fn: Function, tracer: RequestTracer, do_name: string) {
 function proxyNS(
   dns: DurableObjectNamespace,
   tracer: RequestTracer,
-  do_name: string
+  do_name: string,
 ) {
   return new Proxy(dns, {
     get: (target, prop, receiver) => {

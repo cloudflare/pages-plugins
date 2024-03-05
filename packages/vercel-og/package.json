@@ -1,18 +1,46 @@
 {
-	"name": "@cloudflare/pages-plugin-vercel-og",
-	"version": "0.1.0",
-	"main": "dist/index.js",
-	"types": "index.d.ts",
-	"files": [
-		"dist/",
-		"index.d.ts",
-		"tsconfig.json",
-		"api/"
-	],
-	"scripts": {
-		"build": "npx wrangler pages functions build --plugin --outdir=dist"
-	},
-	"dependencies": {
-		"@vercel/og": "0.4.1"
-	}
+  "name": "@cloudflare/pages-plugin-vercel-og",
+  "version": "0.1.0",
+  "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/vercel-og/",
+  "bugs": {
+    "url": "https://github.com/cloudflare/pages-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/pages-plugins.git",
+    "directory": "./packages/vercel-og"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/functions/index.js"
+    },
+    "./api": {
+      "types": "./dist/types/api/index.d.ts",
+      "default": "./dist/src/api/index.js"
+    }
+  },
+  "main": "./dist/functions/index.js",
+  "types": "./index.d.ts",
+  "files": [
+    "./CHANGELOG.md",
+    "./index.d.ts",
+    "./dist/"
+  ],
+  "scripts": {
+    "build": "npm run build:src && npm run build:functions",
+    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap --external=@cloudflare/pages-plugin-vercel-og/api",
+    "prebuild:src": "npm run build:src:types",
+    "build:src": "npx esbuild ./src/**/* --outdir=./dist/src --bundle --platform=neutral --format=esm --main-fields=module,browser,main --conditions=workerd --outbase=./src --sourcemap --external:*.bin --external:*.wasm && cp ../../node_modules/@vercel/og/dist/resvg.wasm ./dist/src/api/resvg.wasm && cp ../../node_modules/@vercel/og/dist/yoga.wasm ./dist/src/api/yoga.wasm && cp ../../node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf.bin ./dist/src/api/noto-sans-v27-latin-regular.ttf.bin",
+    "build:src:types": "npx tsc",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@vercel/og": "0.4.1"
+  },
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  }
 }

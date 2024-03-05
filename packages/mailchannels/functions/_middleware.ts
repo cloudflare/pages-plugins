@@ -1,23 +1,29 @@
+import type {
+  PluginArgs,
+  Submission,
+} from "@cloudflare/pages-plugin-mailchannels";
+import {
+  MailSendBody,
+  sendEmail,
+} from "@cloudflare/pages-plugin-mailchannels/api";
 import staticFormPlugin from "@cloudflare/pages-plugin-static-forms";
-import { MailSendBody, sendEmail } from "../api";
-import type { PluginArgs, Submission } from "..";
 
 type MailChannelsPagesPluginFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>
+  Data extends Record<string, unknown> = Record<string, unknown>,
 > = PagesPluginFunction<Env, Params, Data, PluginArgs>;
 
 const textPlainContent = ({ request, formData, name }: Submission) => {
   return `At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get(
-    "CF-Connecting-IP"
+    "CF-Connecting-IP",
   )}:
 
 ${[...formData.entries()]
   .map(
     ([field, value]) => `${field}
 ${value}
-`
+`,
   )
   .join("\n")}`;
 };
@@ -28,14 +34,14 @@ const textHTMLContent = ({ request, formData, name }: Submission) => {
     <body>
       <h1>New contact form submission</h1>
       <div>At ${new Date().toISOString()}, you received a new ${name} form submission from ${request.headers.get(
-    "CF-Connecting-IP"
-  )}:</div>
+        "CF-Connecting-IP",
+      )}:</div>
       <table>
       <tbody>
       ${[...formData.entries()]
         .map(
           ([field, value]) =>
-            `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`
+            `<tr><td><strong>${field}</strong></td><td>${value}</td></tr>`,
         )
         .join("\n")}
       </tbody>

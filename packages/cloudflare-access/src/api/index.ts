@@ -1,4 +1,4 @@
-import { Identity } from "..";
+import { Identity } from "@cloudflare/pages-plugin-cloudflare-access";
 
 export const getIdentity = async ({
   jwt,
