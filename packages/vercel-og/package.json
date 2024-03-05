@@ -30,9 +30,9 @@
   ],
   "scripts": {
     "build": "npm run build:src && npm run build:functions",
-    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap",
+    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap --external=@cloudflare/pages-plugin-vercel-og/api",
     "prebuild:src": "npm run build:src:types",
-    "build:src": "npx esbuild ./src/**/* --outdir=./dist/src --bundle --platform=neutral --format=esm --main-fields=module,browser,main --conditions=workerd --outbase=./src --sourcemap --external:*.bin --external:*.wasm && cp ./lib/@vercel/og/dist/resvg.wasm ./dist/src/api/resvg.wasm && cp ./lib/@vercel/og/dist/yoga.wasm ./dist/src/api/yoga.wasm && cp ./lib/@vercel/og/dist/noto-sans-v27-latin-regular.ttf.bin ./dist/src/api/noto-sans-v27-latin-regular.ttf.bin",
+    "build:src": "npx esbuild ./src/**/* --outdir=./dist/src --bundle --platform=neutral --format=esm --main-fields=module,browser,main --conditions=workerd --outbase=./src --sourcemap --external:*.bin --external:*.wasm && cp ../../node_modules/@vercel/og/dist/resvg.wasm ./dist/src/api/resvg.wasm && cp ../../node_modules/@vercel/og/dist/yoga.wasm ./dist/src/api/yoga.wasm && cp ../../node_modules/@vercel/og/dist/noto-sans-v27-latin-regular.ttf.bin ./dist/src/api/noto-sans-v27-latin-regular.ttf.bin",
     "build:src:types": "npx tsc",
     "prepack": "npm run build"
   },
