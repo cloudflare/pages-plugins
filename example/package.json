@@ -2,6 +2,7 @@
   "name": "pages-plugins-example",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build:prod": "npx wrangler pages functions build --outdir ./static/_worker.js/",
     "clean": "rm -rf static/_worker.js",
