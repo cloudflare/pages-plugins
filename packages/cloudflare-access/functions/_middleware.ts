@@ -17,7 +17,7 @@ const extractJWTFromRequest = (request: Request) =>
 const base64URLDecode = (s: string) => {
   s = s.replace(/-/g, "+").replace(/_/g, "/").replace(/\s/g, "");
   return new Uint8Array(
-    Array.prototype.map.call(atob(s), (c: string) => c.charCodeAt(0)),
+    Array.from(atob(s)).map((c: string) => c.charCodeAt(0)),
   );
 };
 
