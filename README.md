@@ -26,11 +26,15 @@ Check out our [Developer Docs](https://developers.cloudflare.com/pages/platform/
 
 Check out these examples:
 
-- [Cloudflare Access](./packages/cloudflare-access)
-- [Early Hints](./packages/early-hints/)
-- [Google Chat](./packages/google-chat)
-- [GraphQL](./packages/graphql)
-- [hCaptcha](./packages/hcaptcha)
-- [Honeycomb](./packages/honeycomb)
-- [Sentry](./packages/sentry)
-- [Stytch](./packages/stytch)
+- [Cloudflare Access Pages Plugin](./packages/cloudflare-access)
+- [Google Chat Pages Plugin](./packages/google-chat)
+- [GraphQL Pages Plugin](./packages/graphql)
+- [hCaptcha Pages Plugin](./packages/hcaptcha)
+- [Headers Pages Plugin](./packages/headers)
+- [Honeycomb Pages Plugin](./packages/honeycomb)
+- [MailChannels Pages Plugin](./packages/mailchannels)
+- [Sentry Pages Plugin](./packages/sentry)
+- [Static Forms Pages Plugin](./packages/static-forms)
+- [Stytch Pages Plugin](./packages/stytch)
+- [Turnstile Pages Plugin](./packages/turnstile)
+- [`@vercel/og` Pages Plugin](./packages/vercel-og)
