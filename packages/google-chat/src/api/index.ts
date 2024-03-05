@@ -22,6 +22,8 @@ export class GoogleChatAPI {
     this.tokenExpiration = tokenExpiration;
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   private _token: string;
 
   get token(): Promise<string> {
@@ -59,6 +61,8 @@ export class GoogleChatAPI {
         }).toString(),
       });
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const { access_token } = await response.json();
 
       this._token = access_token;

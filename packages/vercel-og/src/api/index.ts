@@ -1,1 +1,1 @@
-export { ImageResponse } from "@vercel/og";
+export { ImageResponse } from "../../lib/@vercel/og/dist/index.edge.js";

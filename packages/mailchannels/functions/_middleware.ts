@@ -2,11 +2,11 @@ import type {
   PluginArgs,
   Submission,
 } from "@cloudflare/pages-plugin-mailchannels";
-import staticFormPlugin from "@cloudflare/pages-plugin-static-forms";
 import {
   MailSendBody,
   sendEmail,
-} from "@cloudflare/pages-plugins-mailchannels/api";
+} from "@cloudflare/pages-plugin-mailchannels/api";
+import staticFormPlugin from "@cloudflare/pages-plugin-static-forms";
 
 type MailChannelsPagesPluginFunction<
   Env = unknown,

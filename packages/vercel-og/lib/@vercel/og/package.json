@@ -1,0 +1,75 @@
+{
+  "name": "@vercel/og",
+  "version": "0.4.1",
+  "description": "Generate Open Graph Images dynamically from HTML/CSS without a browser",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "./dist/index.node.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "edge": {
+        "types": "./dist/index.edge.d.ts",
+        "default": "./dist/index.edge.js"
+      },
+      "edge-light": {
+        "types": "./dist/index.edge.d.ts",
+        "default": "./dist/index.edge.js"
+      },
+      "browser": {
+        "types": "./dist/index.edge.d.ts",
+        "default": "./dist/index.edge.js"
+      },
+      "worker": {
+        "types": "./dist/index.edge.d.ts",
+        "default": "./dist/index.edge.js"
+      },
+      "workerd": {
+        "types": "./dist/index.edge.d.ts",
+        "default": "./dist/index.edge.js"
+      },
+      "import": {
+        "types": "./dist/index.node.d.ts",
+        "default": "./dist/index.node.js"
+      },
+      "node": {
+        "types": "./dist/index.node.d.ts",
+        "default": "./dist/index.node.js"
+      },
+      "default": "./dist/index.node.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsup && pnpm types && pnpm copy",
+    "types": "tsc --project tsconfig.json",
+    "copy": "node scripts/copy-vendors.js"
+  },
+  "keywords": [
+    "open graph image",
+    "open graph",
+    "og image",
+    "og:image",
+    "social",
+    "card",
+    "image"
+  ],
+  "license": "MPL-2.0",
+  "dependencies": {
+    "@resvg/resvg-wasm": "2.4.1",
+    "satori": "0.4.1",
+    "yoga-wasm-web": "0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.5",
+    "@types/react": "^18.0.15",
+    "tsup": "^6.1.3",
+    "typescript": "^4.7.4"
+  },
+  "packageManager": "pnpm@7.24.0",
+  "engines": {
+    "node": ">=16"
+  }
+}

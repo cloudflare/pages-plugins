@@ -19,6 +19,7 @@
     "declarationMap": true,
     "target": "ESNext",
     "types": ["@cloudflare/workers-types"],
+    "customConditions": ["workerd"],
     "noEmit": true
   },
   "exclude": [

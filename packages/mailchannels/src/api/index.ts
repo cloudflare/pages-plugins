@@ -53,6 +53,8 @@ export const sendEmail = async (
   if (response.status === 202) return { success: true };
 
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { errors } = await response.clone().json();
     return { success: false, errors };
   } catch {
