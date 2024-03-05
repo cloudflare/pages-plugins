@@ -29,7 +29,7 @@ export const onRequestGet: StaticFormPagesPluginFunction = async ({ next }) => {
   const response = await next();
 
   return new HTMLRewriter()
-    .on("form", {
+    .on("form[data-static-form-name]", {
       element(form) {
         const formName = form.getAttribute("data-static-form-name");
         form.setAttribute("method", "POST");
