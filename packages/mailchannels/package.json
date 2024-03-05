@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "build": "npm run build:src && npm run build:functions",
-    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap",
+    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap --external=@cloudflare/pages-plugin-mailchannels/api",
     "prebuild:src": "npm run build:src:types",
     "build:src": "npx esbuild ./src/**/* --outdir=./dist/src --bundle --platform=neutral --format=esm --main-fields=module,browser,main --conditions=workerd --outbase=./src --sourcemap",
     "build:src:types": "npx tsc",
