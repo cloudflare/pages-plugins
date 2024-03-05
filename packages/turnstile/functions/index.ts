@@ -1,4 +1,7 @@
-import type { PluginArgs, PluginData } from "..";
+import type {
+  PluginArgs,
+  PluginData,
+} from "@cloudflare/pages-plugin-turnstile";
 
 type turnstilePagesPluginFunction<
   Env = unknown,

@@ -1,4 +1,4 @@
-import type { PluginArgs, PluginData } from "..";
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-hcaptcha";
 
 type hCaptchaPagesPluginFunction<
   Env = unknown,

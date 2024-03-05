@@ -1,5 +1,5 @@
+import type { PluginArgs } from "@cloudflare/pages-plugin-google-chat";
 import { KJUR } from "jsrsasign";
-import type { PluginArgs } from "..";
 
 type GoogleChatPagesPluginFunction<
   Env = unknown,

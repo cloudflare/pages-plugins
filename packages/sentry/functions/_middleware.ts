@@ -1,5 +1,5 @@
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-sentry";
 import { Toucan } from "toucan-js";
-import type { PluginArgs, PluginData } from "..";
 
 type SentryPagesPluginFunction<
   Env = unknown,

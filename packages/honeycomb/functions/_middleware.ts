@@ -1,5 +1,8 @@
+import type {
+  PluginArgs,
+  PluginData,
+} from "@cloudflare/pages-plugin-honeycomb";
 import { RequestTracer, resolve } from "@cloudflare/workers-honeycomb-logger";
-import type { PluginArgs, PluginData } from "..";
 
 type HoneycombPagesPluginFunction<
   Env = unknown,

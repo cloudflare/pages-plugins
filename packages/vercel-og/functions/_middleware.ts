@@ -1,5 +1,5 @@
-import type { PluginArgs } from "..";
-import { ImageResponse } from "../api";
+import type { PluginArgs } from "@cloudflare/pages-plugin-vercel-og";
+import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
 
 type vercelOGPagesPluginFunction<
   Env = unknown,

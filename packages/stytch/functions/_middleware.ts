@@ -1,5 +1,5 @@
 import { parse } from "cookie";
-import type { PluginArgs, PluginData } from "..";
+import type { PluginArgs, PluginData } from "@cloudflare/pages-plugin-stytch";
 
 type StytchPagesPluginFunction<
   Env = unknown,

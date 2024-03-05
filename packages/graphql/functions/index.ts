@@ -1,4 +1,4 @@
-import type { PluginArgs } from "..";
+import type { PluginArgs } from "@cloudflare/pages-plugin-graphql";
 
 type GraphQLPagesPluginFunction<
   Env = unknown,

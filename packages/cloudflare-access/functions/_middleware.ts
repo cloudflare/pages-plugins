@@ -1,5 +1,8 @@
-import type { PluginArgs } from "..";
-import { generateLoginURL, getIdentity } from "../api";
+import type { PluginArgs } from "@cloudflare/pages-plugin-cloudflare-access";
+import {
+  generateLoginURL,
+  getIdentity,
+} from "@cloudflare/pages-plugin-cloudflare-access/api";
 
 type CloudflareAccessPagesPluginFunction<
   Env = unknown,

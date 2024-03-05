@@ -1,4 +1,4 @@
-import type { PluginArgs } from "..";
+import type { PluginArgs } from "@cloudflare/pages-plugin-headers";
 
 type HeadersPagesPluginFunction<
   Env = unknown,

@@ -11,16 +11,24 @@
     "directory": "./packages/graphql"
   },
   "type": "module",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/functions/index.js"
+    }
+  },
+  "main": "./dist/functions/index.js",
+  "types": "./index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "tsconfig.json",
-    "static/"
+    "./CHANGELOG.md",
+    "./index.d.ts",
+    "./dist/",
+    "./static/"
   ],
   "scripts": {
-    "build": "npx wrangler pages functions build --plugin --outfile index.js"
+    "build": "npm run build:functions",
+    "build:functions": "npx wrangler pages functions build --plugin --outdir=./dist/functions --sourcemap",
+    "prepack": "npm run build"
   },
   "devDependencies": {
     "graphql": "^16.6.0"

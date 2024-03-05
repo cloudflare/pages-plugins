@@ -1,4 +1,4 @@
-import { PluginArgs } from "..";
+import { PluginArgs } from "@cloudflare/pages-plugin-static-forms";
 
 type StaticFormPagesPluginFunction<
   Env = unknown,
