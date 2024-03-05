@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build:prod": "npx wrangler pages functions build --outfile static/_worker.js",
-    "clean": "rm -f static/_worker.js",
+    "build:prod": "npx wrangler pages functions build --outdir ./static/_worker.js/",
+    "clean": "rm -rf static/_worker.js",
     "start": "npx wrangler pages dev static"
   },
   "dependencies": {
