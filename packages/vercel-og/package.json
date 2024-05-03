@@ -1,6 +1,6 @@
 {
   "name": "@cloudflare/pages-plugin-vercel-og",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/vercel-og/",
   "bugs": {
     "url": "https://github.com/cloudflare/pages-plugins/issues"

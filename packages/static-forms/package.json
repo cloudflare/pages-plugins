@@ -1,6 +1,6 @@
 {
   "name": "@cloudflare/pages-plugin-static-forms",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/static-forms/",
   "bugs": {
     "url": "https://github.com/cloudflare/pages-plugins/issues"

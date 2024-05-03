@@ -1,6 +1,6 @@
 {
   "name": "@cloudflare/pages-plugin-mailchannels",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/",
   "bugs": {
     "url": "https://github.com/cloudflare/pages-plugins/issues"
