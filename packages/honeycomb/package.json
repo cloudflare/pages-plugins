@@ -10,6 +10,7 @@
     "url": "git+https://github.com/cloudflare/pages-plugins.git",
     "directory": "./packages/honeycomb"
   },
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
