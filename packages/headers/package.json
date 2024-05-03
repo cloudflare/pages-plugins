@@ -9,6 +9,7 @@
     "url": "git+https://github.com/cloudflare/pages-plugins.git",
     "directory": "./packages/headers"
   },
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
