@@ -1,6 +1,6 @@
 {
   "name": "@cloudflare/pages-plugin-honeycomb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://developers.cloudflare.com/pages/platform/functions/plugins/honeycomb/",
   "bugs": {
     "url": "https://github.com/cloudflare/pages-plugins/issues"
