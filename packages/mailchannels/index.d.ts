@@ -1,4 +1,4 @@
-import type { MailSendBody } from "@cloudflare/pages-plugins-mailchannels/api";
+import type { MailSendBody } from "@cloudflare/pages-plugin-mailchannels/api";
 
 interface Submission {
   request: Request;
