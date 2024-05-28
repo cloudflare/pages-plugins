@@ -32,7 +32,6 @@ Check out these examples:
 - [hCaptcha Pages Plugin](./packages/hcaptcha)
 - [Headers Pages Plugin](./packages/headers)
 - [Honeycomb Pages Plugin](./packages/honeycomb)
-- [MailChannels Pages Plugin](./packages/mailchannels)
 - [Sentry Pages Plugin](./packages/sentry)
 - [Static Forms Pages Plugin](./packages/static-forms)
 - [Stytch Pages Plugin](./packages/stytch)

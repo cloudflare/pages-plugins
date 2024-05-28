@@ -1,6 +1,5 @@
 import headersPlugin from "@cloudflare/pages-plugin-headers";
 import honeycombPlugin from "@cloudflare/pages-plugin-honeycomb";
-import mailchannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
 export const onRequest: PagesFunction[] = [
   honeycombPlugin({
@@ -19,27 +18,5 @@ export const onRequest: PagesFunction[] = [
   // }),
   headersPlugin({
     "Access-Control-Allow-Origin": "*",
-  }),
-  mailchannelsPlugin({
-    personalizations: ({ formData }) => [
-      {
-        to: [{ name: "Greg Brimble", email: "hello@gregbrimble.com" }],
-        bcc: [
-          {
-            name: formData.get("name").toString(),
-            email: formData.get("email").toString(),
-          },
-        ],
-      },
-    ],
-    from: ({ formData }) => ({
-      name: formData.get("name").toString(),
-      email: formData.get("email").toString(),
-    }),
-    respondWith: () =>
-      new Response(null, {
-        status: 302,
-        headers: { Location: "/thank-you" },
-      }),
   }),
 ];
