@@ -1,3 +1,5 @@
+_Sentry now provides official support for Cloudflare Workers and Pages. Refer to the [Sentry documentation](https://docs.sentry.io/platforms/javascript/guides/cloudflare/) for more details._
+
 ## Pages Plugins
 
 # Sentry Pages Plugin
