@@ -1,5 +1,11 @@
 # @cloudflare/pages-plugin-sentry
 
+## 1.1.4
+
+### Patch Changes
+
+- 12c0932: chore: Deprecate @cloudflare/pages-plugin-sentry in favor of official Sentry plugin instead
+
 ## 1.1.3
 
 ### Patch Changes
